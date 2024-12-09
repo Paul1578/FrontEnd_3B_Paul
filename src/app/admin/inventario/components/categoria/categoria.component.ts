@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CategoriaService } from '../../service/categoria.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 interface Categoria {
   id?: number;
@@ -13,7 +14,13 @@ interface Categoria {
   styleUrl: './categoria.component.scss'
 })
 export class CategoriaComponent implements OnInit{
-
+  
+  visible: boolean = false;
+  categoriaForm = new FormGroup({
+    nombre: new FormControl,
+    detalle: new FormControl
+  }) 
+  
   private categoriaService = inject(CategoriaService)
 
   categorias: Categoria[]=[]
@@ -32,4 +39,21 @@ export class CategoriaComponent implements OnInit{
       }
     )
   }
+  showDialog() {
+    this.visible = true;
+  }
+
+  guardarCategoria(){
+    this.categoriaService.funGuardar(this.categoriaForm.value).subscribe(
+      (res:any)=>{
+        this.visible = false;
+        this.getCategorias()
+      },
+      (error:any)=>{
+        console.log(error)
+      }
+    )
+  }
+
 }
+

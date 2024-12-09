@@ -1,6 +1,26 @@
 <div class="card">
     <h1>Categoria</h1>
 
+    <p-button (click)="showDialog()" label="Nueva Categoria" />
+<p-dialog
+    header="Header"
+    [(visible)]="visible"
+    [modal]="true"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="field">
+        <label for="name">Nombre</label>
+        <input type="text" pImputText id="name" required autofocus>
+        <small class="ng-dirty ng-invalid"></small>
+    </div>
+    <div class="field">
+        <label for="det">Detalle</label>
+        <input type="text" pImputText id="det" required autofocus>
+    </div>
+</p-dialog>
+
     <p-table [value]="categorias" [tableStyle]="{ 'min-width':'50rem' }">
         <ng-template pTemplate="header">
             <tr>
@@ -18,7 +38,7 @@
         </ng-template>
     </p-table>
 
-    <ul>
+    <!--<ul>
         @for (cat of categorias; track $index) {
             <li>{{cat.nombre}} - {{cat.detalle}}</li>
         }
@@ -40,5 +60,5 @@
                 </tr>
             }
         </tbody>
-    </table>
+    </table>-->
 </div>
