@@ -43,17 +43,7 @@ export class CategoriaComponent implements OnInit{
     this.visible = true;
   }
 
-  guardarCategoria(){
-    this.categoriaService.funGuardar(this.categoriaForm.value).subscribe(
-      (res:any)=>{
-        this.visible = false;
-        this.getCategorias()
-      },
-      (error:any)=>{
-        console.log(error)
-      }
-    )
-  }
+  
 
 }
 
